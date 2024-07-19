@@ -16,7 +16,7 @@ function Accordion({ title, content, lastChild = false }) {
     <div
       className={`pb-5 md:pb-6 ${
         lastChild ? '' : 'border-b-[1px] border-light-pink'
-      } flex flex-col gap-6`}
+      } flex flex-col gap-5`}
     >
       <div
         className='flex justify-between items-center gap-6 transition-all'
@@ -32,13 +32,7 @@ function Accordion({ title, content, lastChild = false }) {
         />
       </div>
 
-      <div
-        className={`${
-          isOpen ? 'max-h-60' : ''
-        } transition-all duration-500 overflow-hidden max-h-0`}
-      >
-        <p className={`text-grayish-purple text-base`}>{content}</p>
-      </div>
+      {isOpen && <p className='text-grayish-purple text-base'>{content}</p>}
     </div>
   );
 }
