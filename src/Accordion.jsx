@@ -2,6 +2,7 @@ import { useState } from 'react';
 import iconMinus from './assets/icon-minus.svg';
 import iconPlus from './assets/icon-plus.svg';
 import PropTypes from 'prop-types';
+import { motion, AnimatePresence } from 'framer-motion';
 
 Accordion.propTypes = {
   title: PropTypes.string.isRequired,
@@ -32,7 +33,19 @@ function Accordion({ title, content, lastChild = false }) {
         />
       </div>
 
-      {isOpen && <p className='text-grayish-purple text-base'>{content}</p>}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.p
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className='text-grayish-purple text-base'
+          >
+            {content}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
